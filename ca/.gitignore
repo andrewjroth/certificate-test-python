@@ -1,0 +1,6 @@
+# Ignore files created as part of operating CA using OpenSSL (see README.md)
+private/
+certs/
+crl/
+index.txt
+serial
