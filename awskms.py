@@ -102,7 +102,7 @@ class AWSKMSEllipticCurvePrivateKey(ec.EllipticCurvePrivateKey):
         """ Send data to AWS KMS to be signed, return signature.
 
         If key metadata has been loaded, support for signature_algorithm will be checked,
-        raising ValueError if unsupported.
+        raising ValueError if unsupported.  If metadata is not available, no check will be done.
 
         """
         # signature_algorithm.algorithm.name -> Example: "sha256" (str)

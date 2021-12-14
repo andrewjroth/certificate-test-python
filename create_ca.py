@@ -28,6 +28,20 @@ builder = x509.CertificateBuilder().issuer_name(
     datetime.today()
 ).not_valid_after(
     datetime.today() + timedelta(days=30)
+).add_extension(
+    x509.BasicConstraints(ca=True, path_length=0), critical=True
+).add_extension(
+    x509.KeyUsage(
+        digital_signature=True,
+        content_commitment=False,
+        key_encipherment=False,
+        data_encipherment=False,
+        key_agreement=False,
+        key_cert_sign=True,
+        crl_sign=True,
+        encipher_only=False,
+        decipher_only=False
+    ), critical=True
 )
 cert = builder.sign(AWSKMSEllipticCurvePrivateKey(KEYID), hashes.SHA384())
 with open('ca-out.pem', 'wb') as outfile:
